@@ -4,16 +4,21 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
 
 class Navbar extends Component {
-  onLogoutClick(e) {
+  onLogoutClick (e) {
     e.preventDefault()
     this.props.logoutUser()
   }
 
-  render() {
+  render () {
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
       <ul className='navbar-nav ml-auto'>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/add-news'>
+            Add News
+          </Link>
+        </li>
         <li className='nav-item'>
           <a
             href=''
@@ -62,9 +67,9 @@ class Navbar extends Component {
           <div className='collapse navbar-collapse' id='mobile-nav'>
             <ul className='navbar-nav mr-auto'>
               <li className='nav-item'>
-                <Link className='nav-link' to='/somewhere'>
+                <Link className='nav-link' to='/news'>
                   {' '}
-                  Link
+                  News
                 </Link>
               </li>
             </ul>

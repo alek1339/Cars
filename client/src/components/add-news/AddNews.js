@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Footer extends Component {
+class AddNews extends Component {
   render () {
     return (
       <div><h1>Add News</h1></div>
@@ -8,4 +8,4 @@ class Footer extends Component {
   }
 }
 
-export default (Footer)
+export default (AddNews)

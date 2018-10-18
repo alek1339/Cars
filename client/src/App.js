@@ -17,6 +17,8 @@ import Dashboard from './components/layout/Dashboard'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 
+import AddNews from './components/add-news/AddNews'
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -47,6 +49,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
             </Switch>
+            <Route exact path='/add-news' component={AddNews} />
             <Route exact path='/register' component={Register} />
             <Footer />
           </div>
