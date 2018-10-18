@@ -3,34 +3,39 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions'
 
 class Login extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errors: {}
     }
 
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
     }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
     }
   }
 
-  onChange (e) {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
 
     const userData = {
@@ -41,19 +46,22 @@ class Login extends Component {
     this.props.loginUser(userData)
   }
 
-  render () {
+  render() {
+    const { errors } = this.state
     return (
       <div>
-              <form onSubmit={this.onSubmit}>
-                  <div className='form-group'>
+        <form onSubmit={this.onSubmit}>
+          <div className='form-group'>
             <input className='form-control'
-                          type='text'
-                          name='email'
+              type='text'
+              name='email'
               placeholder='email'
               onChange={this.onChange}
               aria-describedby='emailHelp'
             />
-                      <input className='form-control' type='password' name='password' placeholder='password' onChange={this.onChange} />
+            <span>{errors.email}</span>
+            <input className='form-control' type='password' name='password' placeholder='password' onChange={this.onChange} />
+            <span>{errors.password}</span>
             <input type='submit' id='btnLogin' className='btn btn-primary' />
           </div>
 
@@ -65,10 +73,11 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
   email: state.auth.email,
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 })
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     loginUser: (userData) => dispatch(loginUser(userData))
   }

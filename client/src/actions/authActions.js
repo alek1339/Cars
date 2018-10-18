@@ -1,31 +1,18 @@
-import { SET_CURRENT_USER } from './types'
+import { SET_CURRENT_USER, GET_ERRORS } from './types'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from '../utils/setAuthToken'
-
-// Register User
-// export const registerUser = (userData, history) => dispatch => {
-//     axios
-//       .post('/api/users/register', userData)
-//       .then(res => history.push('/login'))
-//       .catch(err =>
-//         dispatch({
-//           type: GET_ERRORS,
-//           payload: err.response.data
-//         })
-//       )
-//   }
 
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
     .then(res => history.push('/news'))
     .catch(err =>
-      console.log(err)
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
     )
-    // Just for TEST
-
-  dispatch(setCurrentUser(userData))
 }
 
 // Login User
@@ -39,7 +26,10 @@ export const loginUser = (userData) => dispatch => {
       dispatch(setCurrentUser(decoded))
     })
     .catch(err =>
-      console.log(err)
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
     )
 
     // Just for TEST

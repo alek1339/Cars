@@ -4,23 +4,30 @@ import { withRouter } from 'react-router-dom'
 import { registerUser } from '../../actions/authActions'
 
 class Register extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       name: '',
       email: '',
       password: '',
-      password2: ''
+      password2: '',
+      errors: {}
     }
 
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
   }
-  onChange(e) {
+  onChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmit(e) {
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
+  }
+
+  onSubmit (e) {
     e.preventDefault()
 
     const userData = {
@@ -32,7 +39,8 @@ class Register extends Component {
     this.props.registerUser(userData, this.props.history)
   }
 
-  render() {
+  render () {
+    const { errors } = this.state
     return (
       <div>
         <h2>Здравей, {this.props.email}</h2>
@@ -44,6 +52,7 @@ class Register extends Component {
               placeholder='Name'
               onChange={this.onChange}
             />
+            <span>{errors.name} </span>
             <input className='form-control'
               type='text'
               name='email'
@@ -51,18 +60,20 @@ class Register extends Component {
               onChange={this.onChange}
               aria-describedby='emailHelp'
             />
+            <span>{errors.email} </span>
             <input
               className='form-control'
               type='password' name='password'
               placeholder='password'
               onChange={this.onChange}
             />
+            <span>{errors.password} </span>
             <input
               className='form-control'
               type='password' name='password2'
               placeholder='Confirm password'
               onChange={this.onChange}
-            />
+            /><span>{errors.password2}</span>
             <input type='submit' id='btnLogin' className='btn btn-primary' />
           </div>
 
@@ -73,10 +84,11 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-  email: state.auth.email
+  email: state.auth.email,
+  errors: state.errors
 })
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     registerUser: (userData, history) => dispatch(registerUser(userData, history))
   }
