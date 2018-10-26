@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
 
 class Navbar extends Component {
-  onLogoutClick(e) {
+  onLogoutClick (e) {
     e.preventDefault()
     this.props.logoutUser()
   }
 
-  render() {
+  render () {
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
@@ -25,7 +25,7 @@ class Navbar extends Component {
         </li>
         <li class='nav-item dropdown'>
           <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-            News
+            Cars
           </a>
           <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
             <Link class='dropdown-item' to='/add-car'>Add Car</Link>
