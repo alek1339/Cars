@@ -6,6 +6,7 @@ const passport = require('passport')
 const users = require('./routes/api/users')
 const profile = require('./routes/api/profile')
 const news = require('./routes/api/news')
+const cars = require('./routes/api/cars')
 
 const app = express()
 
@@ -29,6 +30,7 @@ app.use(passport.initialize())
 require('./config/passport')(passport)
 
 // Use Routes
+app.use('/api/cars', cars)
 app.use('/api/news', news)
 app.use('/api/users', users)
 app.use('/api/profile', profile)

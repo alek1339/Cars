@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { registerUser } from '../../actions/authActions'
 
 class Register extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       name: '',
@@ -17,17 +17,17 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
   }
-  onChange (e) {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
     }
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
 
     const userData = {
@@ -39,7 +39,7 @@ class Register extends Component {
     this.props.registerUser(userData, this.props.history)
   }
 
-  render () {
+  render() {
     const { errors } = this.state
     return (
       <div>
@@ -74,7 +74,7 @@ class Register extends Component {
               placeholder='Confirm password'
               onChange={this.onChange}
             /><span>{errors.password2}</span>
-            <input type='submit' id='btnLogin' className='btn btn-primary' />
+            <input type='submit' id='btnRegister' className='btn btn-primary' />
           </div>
 
         </form>
@@ -88,7 +88,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     registerUser: (userData, history) => dispatch(registerUser(userData, history))
   }

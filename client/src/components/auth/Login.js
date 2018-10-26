@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions'
 
 class Login extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       email: '',
@@ -15,7 +15,7 @@ class Login extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
     }
@@ -25,17 +25,17 @@ class Login extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
     }
   }
 
-  onChange(e) {
+  onChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmit(e) {
+  onSubmit (e) {
     e.preventDefault()
 
     const userData = {
@@ -46,7 +46,7 @@ class Login extends Component {
     this.props.loginUser(userData)
   }
 
-  render() {
+  render () {
     const { errors } = this.state
     return (
       <div>
@@ -77,7 +77,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     loginUser: (userData) => dispatch(loginUser(userData))
   }

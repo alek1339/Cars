@@ -13,11 +13,16 @@ import { setCurrentUser, logoutUser } from './actions/authActions'
 import './App.css'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import News from './components/layout/News'
 import Dashboard from './components/layout/Dashboard'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 
+import EditNews from './components/edit-news/EditNews'
+import EditOneNews from './components/edit-news/EditOneNews'
+
 import AddNews from './components/add-news/AddNews'
+import AddCar from './components/add-cars/AddCar'
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -39,18 +44,24 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Provider store={store}>
         <Router>
           <div>
             <Navbar />
-            <Route exact path='/login' component={Login} />
+
             <Switch>
+              <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <Route exact path='/news' component={News} />
+              <Route exact path='/add-car' component={AddCar} />
+              <Route exact path='/add-news' component={AddNews} />
+              <Route exact path='/edit-news' component={EditNews} />
+              <Route path='/edit-one-news' component={EditOneNews} />
+              <Route exact path='/register' component={Register} />
             </Switch>
-            <Route exact path='/add-news' component={AddNews} />
-            <Route exact path='/register' component={Register} />
+
             <Footer />
           </div>
         </Router>
