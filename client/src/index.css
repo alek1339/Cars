@@ -53,3 +53,24 @@ code {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* JUST TEST */
+
+.img{
+  height: 240px;
+  background-color: silver;
+  }
+  .seccolfirstrow{
+    height: 120px;
+    background-color: yellow;
+  }
+  .seccolsecrow{
+    height: 120px;
+    background-color: blue;
+  }
+  .thirdcolfirstrow{
+  height: 120px;
+  background-color: green;
+  }
+  .col-sm-12 .col-sm-8 .col-sm-4 {
+  }

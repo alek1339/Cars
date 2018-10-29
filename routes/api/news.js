@@ -35,6 +35,7 @@ router.post('/add-news', (req, res) => {
 // @desc    Get news
 // @access  Public
 router.get('/', (req, res) => {
+  console.log('HERE ' + req + res)
   News.find()
     .sort({ date: -1 })
     .then(posts => res.json(posts))
