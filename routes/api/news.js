@@ -41,4 +41,28 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nonewsfound: 'No news found' }))
 })
 
+// @route   GET api/news
+// @desc    Get news
+// @access  Public
+router.get('/edit', (req, res) => {
+  const id = req.headers.referer.slice(39)
+
+  News.findById(id)
+    .sort({ date: -1 })
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404).json({ nonewsfound: 'No news found' }))
+})
+
+router.post('/edit-news', (req, res) => {
+  const id = req.headers.referer.slice(39)
+
+  News.findByIdAndUpdate(id, { $set: req.body }, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    console.log('RESULT: ' + result)
+    res.send('Done')
+  })
+})
+
 module.exports = router

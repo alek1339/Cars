@@ -13,9 +13,17 @@ class News extends Component {
       .then(res => res.json())
       .then(news => this.setState({ news }, console.log('News fetched', news)))
   }
+
   render() {
     return (
       <div className='container'>
+        <div className='row'>
+          {this.state.news.slice(0, 1).map(news => <div key={news.id} classNameName='col-sm-12'>
+            <div className='row'>
+              <div className='col-sm-4 img'>{news.author}</div>
+            </div>
+          </div>)}
+        </div>
         <div className='row'>
           <h1>News:</h1>
           <div className='col-sm-4'>
@@ -28,11 +36,6 @@ class News extends Component {
                     widt='100%'
                     height='250'
                     alt='Smiley face' />
-                  <div className='bottom-left'>Bottom Left</div>
-                  <div className='top-left'>Top Left</div>
-                  <div className='top-right'>Top Right</div>
-                  <div className='bottom-right'>Bottom Right</div>
-                  <div className='centered'>Centered</div>
                 </div>
                 <article>{news.text}</article>
                 {news.author}
@@ -50,11 +53,6 @@ class News extends Component {
                     widt='100%'
                     height='250'
                     alt='Smiley face' />
-                  <div className='bottom-left'>Bottom Left</div>
-                  <div className='top-left'>Top Left</div>
-                  <div className='top-right'>Top Right</div>
-                  <div className='bottom-right'>Bottom Right</div>
-                  <div className='centered'>Centered</div>
                 </div>
                 <article>{news.text}</article>
                 {news.author}

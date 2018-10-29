@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 class EditNews extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       news: []
@@ -10,17 +10,16 @@ class EditNews extends Component {
     this.onEditClick = this.onEditClick.bind(this)
   }
 
-  onEditClick (id) {
-    console.log('Clicked: ' + id)
+  onEditClick(id) {
     this.props.history.push('/edit-one-news/id:' + id)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('/api/news/')
       .then(res => res.json())
       .then(news => this.setState({ news }, console.log('News fetched', news)))
   }
-  render () {
+  render() {
     return (
       <div className='container'>
         <div className='row'>

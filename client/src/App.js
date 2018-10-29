@@ -24,6 +24,9 @@ import EditOneNews from './components/edit-news/EditOneNews'
 import AddNews from './components/add-news/AddNews'
 import AddCar from './components/add-cars/AddCar'
 
+import EditCars from './components/edit-car/EditCars'
+import EditOneCar from './components/edit-car/EditOneCar'
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -58,6 +61,8 @@ class App extends Component {
               <Route exact path='/add-car' component={AddCar} />
               <Route exact path='/add-news' component={AddNews} />
               <Route exact path='/edit-news' component={EditNews} />
+              <Route exact path='/edit-cars' component={EditCars} />
+              <Route path='/edit-one-car' component={EditOneCar} />
               <Route path='/edit-one-news' component={EditOneNews} />
               <Route exact path='/register' component={Register} />
             </Switch>
