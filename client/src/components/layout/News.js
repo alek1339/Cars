@@ -2,16 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchNews } from '../../actions/newsActions'
-import { render } from 'react-dom';
-import Pagination from 'react-paginating';
+import { render } from 'react-dom'
+import Pagination from 'react-paginating'
 
-const fruits = [
-  ["apple", "orange"],
-  ["banana", "avocado"],
-  ["coconut", "blueberry"],
-  ["payaya", "peach"],
-  ["pear", "plum"]
-];
+import LastNews from './LastNews'
 
 class News extends Component {
   constructor() {
@@ -37,11 +31,11 @@ class News extends Component {
     const news = this.props.news
     const newsArray = []
 
-    for (let i = 0; i < news.length / 3; i++) {
-      newsArray.push([news[i], news[i + 1], news[i + 2]])
+    for (let i = 0; i < news.length / 4; i++) {
+      newsArray.push([news[i], news[i + 1], news[i + 2], news[i + 3]])
     }
 
-    const limit = 5;
+    const limit = 4;
     const pageCount = 3;
     const total = newsArray.length * limit;
 
@@ -88,20 +82,20 @@ class News extends Component {
         <div className='row jumbo'>
           <div className='col-sm-12 '>
             <div className='row'>
-              <div className='col-sm-4 img' style={firstBox}>
+              <div className='col-sm-4 img pointer' style={firstBox}>
                 <Link class='dropdown-item landing-box' to={firstBoxIdLink}>{news[0].header.slice(0, 30)}</Link>
               </div>
               <div className='col-sm-8'>
                 <div className='row'>
-                  <div className='col-sm-12 seccolfirstrow' style={secondBox}>
+                  <div className='col-sm-12 seccolfirstrow pointer' style={secondBox}>
                     <Link class='dropdown-item landing-box' to={secondBoxIdLink}>{news[1].header}</Link>
                   </div>
                 </div>
                 <div className='row'>
-                  <div className='col-sm-6 seccolsecrow' style={thirdBox}>
+                  <div className='col-sm-6 seccolsecrow pointer' style={thirdBox}>
                     <Link class='dropdown-item landing-box' to={thirdBoxIdLink}>{news[2].header.slice(0, 25)}</Link>
                   </div>
-                  <div className='col-sm-6 thirdcolfirstrow' style={fourthBox}>
+                  <div className='col-sm-6 thirdcolfirstrow pointer' style={fourthBox}>
                     <Link class='dropdown-item landing-box' to={fourthBoxIdLink}>{news[3].header.slice(0, 25)}</Link>
                   </div>
                 </div>
@@ -109,31 +103,6 @@ class News extends Component {
             </div>
           </div>
         </div>
-
-        {/* <div className='row'>
-          <div className='col-sm-8'>
-            <div> {news.slice(1).map(news =>
-              <div key={news.id}>
-                <Link className='header' to={'/news/id/' + news._id}><h1 className='text-dark'>{news.header}</h1></Link>
-                <Link to={'/news/id/' + news._id}>
-                  <img
-                    src={news.imgUrl}
-                    widt='100%'
-                    height='250'
-                    alt='img' />
-                </Link>
-                <article>{news.text.substr(0, 199)}</article>
-                <Link className='readMore' to={'/news/id/' + news._id}>
-                  <button className='btn btn-primary'>Почети още</button>
-                </Link>
-                <hr />
-              </div>
-            )}
-            </div>
-          </div>
-          <hr />
-        </div> */}
-
         <div className='row'>
           <div className='col-sm-8'>
             <div>
@@ -151,7 +120,8 @@ class News extends Component {
                   <button className='btn btn-primary'>Почети още</button>
                 </Link>
                 <hr />
-              </div>)}
+              </div>
+              )}
             </div>
             <Pagination
               total={total}
@@ -169,70 +139,90 @@ class News extends Component {
                 totalPages,
                 getPageItemProps
               }) => (
-                  <div>
-                    <button className='btn-primary'
-                      {...getPageItemProps({
-                        pageValue: 1,
-                        onPageChange: this.handlePageChange
-                      })}
-                    >
-                      first
-              </button>
+                  <div class='row'>
+                    <div className='col-sm-8 pagination'>
+                      <nav aria-label="Page navigation example">
+                        <ul className="pagination">
+                          <li className="page-item">
+                            <a className='page-link'
+                              {...getPageItemProps({
+                                pageValue: 1,
+                                onPageChange: this.handlePageChange
+                              })}
+                            >
+                              Първа
+              </a>
+                          </li>
 
-                    {hasPreviousPage && (
-                      <button className='btn-primary'
-                        {...getPageItemProps({
-                          pageValue: previousPage,
-                          onPageChange: this.handlePageChange
-                        })}
-                      >
-                        {"<"}
-                      </button>
-                    )}
 
-                    {pages.map(page => {
-                      let activePage = null;
-                      if (currentPage === page) {
-                        activePage = { backgroundColor: "#fdce09" };
-                      }
-                      return (
-                        <button className='btn-primary'
-                          key={page}
-                          style={activePage}
-                          {...getPageItemProps({
-                            pageValue: page,
-                            onPageChange: this.handlePageChange
+                          {hasPreviousPage && (
+                            <li className="page-item">
+                              <a className='page-link'
+                                {...getPageItemProps({
+                                  pageValue: previousPage,
+                                  onPageChange: this.handlePageChange
+                                })}
+                              >
+                                {"<"}
+                              </a>
+                            </li>
+                          )}
+
+                          {pages.map(page => {
+                            let activePage = null;
+                            if (currentPage === page) {
+                              activePage = { backgroundColor: "#40b3a2" };
+                            }
+                            return (
+                              <li className="page-item">
+                                <a className='page-link'
+                                  key={page}
+                                  style={activePage}
+                                  {...getPageItemProps({
+                                    pageValue: page,
+                                    onPageChange: this.handlePageChange
+                                  })}
+                                >
+                                  {page}
+                                </a>
+                              </li>
+                            );
                           })}
-                        >
-                          {page}
-                        </button>
-                      );
-                    })}
 
-                    {hasNextPage && (
-                      <button className='btn-primary'
-                        {...getPageItemProps({
-                          pageValue: nextPage,
-                          onPageChange: this.handlePageChange
-                        })}
-                      >
-                        {">"}
-                      </button>
-                    )}
+                          {hasNextPage && (
+                            <li className="page-item">
+                              <a className='page-link'
+                                {...getPageItemProps({
+                                  pageValue: nextPage,
+                                  onPageChange: this.handlePageChange
+                                })}
+                              >
+                                {">"}
+                              </a>
+                            </li>
 
-                    <button className='btn-primary page-item'
-                      {...getPageItemProps({
-                        pageValue: totalPages,
-                        onPageChange: this.handlePageChange
-                      })}
-                    >
-                      last
-              </button>
+                          )}
+                          <li className="page-item">
+                            <a className='page-link'
+                              {...getPageItemProps({
+                                pageValue: totalPages,
+                                onPageChange: this.handlePageChange
+                              })}
+                            >
+                              Последна
+              </a>
+                          </li>
+
+                        </ul>
+                      </nav>
+                    </div>
                   </div>
                 )}
             </Pagination>
           </div>
+          <LastNews />
         </div>
+
       </div >
     )
   }

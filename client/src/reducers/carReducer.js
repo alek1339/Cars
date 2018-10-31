@@ -1,18 +1,18 @@
 import { FETCH_CARS } from '../actions/types'
 
 const initialState =
-    [{
-      make: '',
-      model: '',
-      year: '',
-      engine: '',
-      hp: '',
-      mpg: '',
-      realMpg: '',
-      carClassification: '',
-      averagRepairCosts: '',
-      averageYearRepairs: ''
-    }]
+  [{
+    make: '',
+    model: '',
+    year: '',
+    engine: '',
+    hp: '',
+    mpg: '',
+    realMpg: '',
+    carClassification: '',
+    averagRepairCosts: '',
+    averageYearRepairs: ''
+  }]
 
 export default function (state = initialState, action) {
   switch (action.type) {

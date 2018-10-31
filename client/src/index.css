@@ -14,7 +14,14 @@ h1,h2,h3,h4,h5,h6, a {
 
 a:hover, .btn:hover {
   text-decoration: none !important;
-  background-color: #659EBC;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.pagination{
+  left: 25%;
 }
 
 .nav{

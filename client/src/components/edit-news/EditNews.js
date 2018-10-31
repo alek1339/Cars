@@ -23,10 +23,9 @@ class EditNews extends Component {
     return (
       <div className='container'>
         <div className='row'>
-          <h1>News:</h1>
           <div className='col-sm-8'>
-            <ul> {this.state.news.map(news =>
-              <li key={news.id}>
+            <div> {this.state.news.map(news =>
+              <div key={news.id}>
                 <h1>{news.header}</h1>
                 <div className='container'>
                   <img
@@ -36,11 +35,11 @@ class EditNews extends Component {
                     alt='img' />
                 </div>
                 <article>{news.text}</article>
-                {news.author}
+                <p>{news.author}</p>
                 <button className='btn btn-primary' onClick={() => this.onEditClick(news._id)}>Edit</button>
-              </li>
+              </div>
             )}
-            </ul>
+            </div>
           </div>
           <hr />
         </div>
