@@ -1,16 +1,51 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchNews } from '../../actions/newsActions'
+import { render } from 'react-dom';
+import Pagination from 'react-paginating';
 
-import { Link } from 'react-router-dom'
+const fruits = [
+  ["apple", "orange"],
+  ["banana", "avocado"],
+  ["coconut", "blueberry"],
+  ["payaya", "peach"],
+  ["pear", "plum"]
+];
 
 class News extends Component {
-  componentDidMount () {
+  constructor() {
+    super()
+    this.state = {
+      currentPage: 1
+    }
+  }
+
+  handlePageChange = page => {
+    this.setState({
+      currentPage: page
+    });
+  };
+
+  componentDidMount() {
     this.props.fetchNews()
   }
 
-  render () {
+  render() {
+    const { currentPage } = this.state;
+
     const news = this.props.news
+    const newsArray = []
+
+    for (let i = 0; i < news.length / 3; i++) {
+      newsArray.push([news[i], news[i + 1], news[i + 2]])
+    }
+
+    const limit = 5;
+    const pageCount = 3;
+    const total = newsArray.length * limit;
+
+    console.log(newsArray[0])
 
     const firstBoxIdLink = '/news/id/' + news[0]._id
     const secondBoxIdLink = '/news/id/' + news[1]._id
@@ -75,7 +110,7 @@ class News extends Component {
           </div>
         </div>
 
-        <div className='row'>
+        {/* <div className='row'>
           <div className='col-sm-8'>
             <div> {news.slice(1).map(news =>
               <div key={news.id}>
@@ -97,13 +132,113 @@ class News extends Component {
             </div>
           </div>
           <hr />
+        </div> */}
+
+        <div className='row'>
+          <div className='col-sm-8'>
+            <div>
+              {newsArray[currentPage - 1].map(news => <div key={news.id}>
+                <Link className='header' to={'/news/id/' + news._id}><h1 className='text-dark'>{news.header}</h1></Link>
+                <Link to={'/news/id/' + news._id}>
+                  <img
+                    src={news.imgUrl}
+                    widt='100%'
+                    height='250'
+                    alt='img' />
+                </Link>
+                <article>{news.text.substr(0, 199)}</article>
+                <Link className='readMore' to={'/news/id/' + news._id}>
+                  <button className='btn btn-primary'>Почети още</button>
+                </Link>
+                <hr />
+              </div>)}
+            </div>
+            <Pagination
+              total={total}
+              limit={limit}
+              pageCount={pageCount}
+              currentPage={currentPage}
+            >
+              {({
+                pages,
+                currentPage,
+                hasNextPage,
+                hasPreviousPage,
+                previousPage,
+                nextPage,
+                totalPages,
+                getPageItemProps
+              }) => (
+                  <div>
+                    <button className='btn-primary'
+                      {...getPageItemProps({
+                        pageValue: 1,
+                        onPageChange: this.handlePageChange
+                      })}
+                    >
+                      first
+              </button>
+
+                    {hasPreviousPage && (
+                      <button className='btn-primary'
+                        {...getPageItemProps({
+                          pageValue: previousPage,
+                          onPageChange: this.handlePageChange
+                        })}
+                      >
+                        {"<"}
+                      </button>
+                    )}
+
+                    {pages.map(page => {
+                      let activePage = null;
+                      if (currentPage === page) {
+                        activePage = { backgroundColor: "#fdce09" };
+                      }
+                      return (
+                        <button className='btn-primary'
+                          key={page}
+                          style={activePage}
+                          {...getPageItemProps({
+                            pageValue: page,
+                            onPageChange: this.handlePageChange
+                          })}
+                        >
+                          {page}
+                        </button>
+                      );
+                    })}
+
+                    {hasNextPage && (
+                      <button className='btn-primary'
+                        {...getPageItemProps({
+                          pageValue: nextPage,
+                          onPageChange: this.handlePageChange
+                        })}
+                      >
+                        {">"}
+                      </button>
+                    )}
+
+                    <button className='btn-primary page-item'
+                      {...getPageItemProps({
+                        pageValue: totalPages,
+                        onPageChange: this.handlePageChange
+                      })}
+                    >
+                      last
+              </button>
+                  </div>
+                )}
+            </Pagination>
+          </div>
         </div>
       </div >
     )
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchNews: () => dispatch(fetchNews())
   }
