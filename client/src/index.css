@@ -12,8 +12,9 @@ h1,h2,h3,h4,h5,h6, a {
   color: #40B3A2;
 }
 
-a:hover {
+a:hover, .btn:hover {
   text-decoration: none !important;
+  background-color: #659EBC;
 }
 
 .nav{

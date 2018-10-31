@@ -5,11 +5,11 @@ import { fetchNews } from '../../actions/newsActions'
 import { Link } from 'react-router-dom'
 
 class News extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchNews()
   }
 
-  render() {
+  render () {
     const news = this.props.news
 
     const firstBoxIdLink = '/news/id/' + news[0]._id
@@ -103,7 +103,7 @@ class News extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     fetchNews: () => dispatch(fetchNews())
   }

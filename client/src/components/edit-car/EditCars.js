@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchCars } from '../../actions/carActions'
 
 class EditCars extends Component {
   constructor(props) {
@@ -15,17 +16,17 @@ class EditCars extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/cars/edit-cars')
-      .then(res => res.json())
-      .then(cars => this.setState({ cars }, console.log('Cars fetched', cars)))
+    this.props.fetchCars()
   }
+
   render() {
+    const cars = this.props.cars
     return (
       <div className='container'>
         <div className='row'>
           <h1>Cars:</h1>
           <div className='col-sm-8'>
-            <ul> {this.state.cars.map(car =>
+            <ul> {cars.map(car =>
               <li key={car.id}>
                 <h1>{car.make}</h1>
                 <h1>{car.model}</h1>
@@ -41,4 +42,14 @@ class EditCars extends Component {
   }
 }
 
-export default withRouter(EditCars)
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchCars: () => dispatch(fetchCars())
+  }
+}
+
+const mapStateToProps = state => ({
+  cars: state.cars
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditCars)
