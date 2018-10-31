@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchNews } from '../../actions/newsActions'
-import { setCurrentNews } from '../../actions/setCurrentNewsAction'
 
 class LastNews extends Component {
   constructor (props) {
@@ -13,7 +12,6 @@ class LastNews extends Component {
 
   lastNewsClicked (id) {
     this.props.history.push('/news/id/' + id)
-    this.props.setCurrentNews(id)
   }
 
   componentDidMount () {
@@ -24,6 +22,7 @@ class LastNews extends Component {
     const news = this.props.news
     return (
       <div className='col-sm-4'>
+        <div class='fb-page' data-href='https://www.facebook.com/foutletcom/' data-small-header='false' data-adapt-container-width='true' data-hide-cover='false' data-show-facepile='false'><blockquote cite='https://www.facebook.com/foutletcom/' class='fb-xfbml-parse-ignore'><a href='https://www.facebook.com/foutletcom/'>Fashion Outlet - Zara, Stradivarius, Bershka, Vero Moda и др.</a></blockquote></div>
         <h5>Последни новини: </h5>
         {news.slice(0, 5).map(news => <div key={news.id}>
           <a className='header pointer' onClick={() => this.lastNewsClicked(news._id)} ><h6>{news.header}</h6>
@@ -38,8 +37,7 @@ class LastNews extends Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchNews: () => dispatch(fetchNews()),
-    setCurrentNews: (id) => dispatch(setCurrentNews(id))
+    fetchNews: () => dispatch(fetchNews())
   }
 }
 
