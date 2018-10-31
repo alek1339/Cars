@@ -1,7 +1,7 @@
 const isEmpty = require('./is-empty')
 const Validator = require('validator')
 
-module.exports = function validateAddNewsInput (data) {
+module.exports = function validateAddNewsInput(data) {
   let errors = {}
 
   data.header = !isEmpty(data.header) ? data.header : ''
@@ -9,14 +9,14 @@ module.exports = function validateAddNewsInput (data) {
   data.author = !isEmpty(data.author) ? data.author : ''
   data.imgUrl = !isEmpty(data.author) ? data.imgUrl : ''
 
-  if (!Validator.isLength(data.header, { min: 2, max: 30 })) {
-    errors.header = 'Header must be between 2 and 30 characters'
+  if (!Validator.isLength(data.header, { min: 2 })) {
+    errors.header = 'Header must be between 2 and 90 characters'
   }
   if (Validator.isEmpty(data.header)) {
     errors.header = 'Header field is required'
   }
-  if (!Validator.isLength(data.text, { min: 12, max: 2000 })) {
-    errors.text = 'Text must be between 12 and 2000 characters'
+  if (!Validator.isLength(data.text, { min: 12, max: 9000 })) {
+    errors.text = 'Text must be between 12 and 9000 characters'
   }
   if (Validator.isEmpty(data.text)) {
     errors.text = 'Text field is required'

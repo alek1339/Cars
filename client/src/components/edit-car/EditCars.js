@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 class EditCars extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       cars: []
@@ -10,21 +10,21 @@ class EditCars extends Component {
     this.onEditClick = this.onEditClick.bind(this)
   }
 
-  onEditClick (id) {
+  onEditClick(id) {
     this.props.history.push('/edit-one-car/id:' + id)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('/api/cars/edit-cars')
       .then(res => res.json())
       .then(cars => this.setState({ cars }, console.log('Cars fetched', cars)))
   }
-  render () {
+  render() {
     return (
       <div className='container'>
         <div className='row'>
           <h1>Cars:</h1>
-                  <div className='col-sm-8'>
+          <div className='col-sm-8'>
             <ul> {this.state.cars.map(car =>
               <li key={car.id}>
                 <h1>{car.make}</h1>

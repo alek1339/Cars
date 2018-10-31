@@ -20,6 +20,7 @@ import Register from './components/auth/Register'
 
 import EditNews from './components/edit-news/EditNews'
 import EditOneNews from './components/edit-news/EditOneNews'
+import NewsId from './components/layout/NewsId'
 
 import AddNews from './components/add-news/AddNews'
 import AddCar from './components/add-cars/AddCar'
@@ -62,6 +63,7 @@ class App extends Component {
               <Route exact path='/add-news' component={AddNews} />
               <Route exact path='/edit-news' component={EditNews} />
               <Route exact path='/edit-cars' component={EditCars} />
+              <Route path='/news/id/' component={NewsId} />
               <Route path='/edit-one-car' component={EditOneCar} />
               <Route path='/edit-one-news' component={EditOneNews} />
               <Route exact path='/register' component={Register} />

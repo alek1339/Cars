@@ -6,6 +6,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} 
+
+h1,h2,h3,h4,h5,h6, a {
+  color: #40B3A2;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.nav{
+  background-color: #40B3A2;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.jumbo{
+  border-bottom: 2px solid #659EBC;
+  padding-bottom: 3px;
+}
+
+.btn-primary {
+  background-color: #40B3A2;
+  border-color: #40B3A2;
+}
+
+.footer{
+  background-color: #40B3A2;
+  color: white;
 }
 
 code {
@@ -16,7 +45,6 @@ code {
 .container {
   position: relative;
   text-align: center;
-  color: red;
 }
 
 .bottom-left {
@@ -55,22 +83,31 @@ code {
 }
 
 /* JUST TEST */
+.readMore{
+  font-size: 22px
+}
+
+.landing-box { 
+  color: white;
+  background-color: #40B3A2;
+  opacity: 0.6;
+}
 
 .img{
-  height: 240px;
-  background-color: silver;
+  height: 360px;
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
   }
   .seccolfirstrow{
-    height: 120px;
-    background-color: yellow;
+    height: 180px;
+    border: 2px solid white;
   }
   .seccolsecrow{
-    height: 120px;
-    background-color: blue;
+    height: 180px;
+    border: 2px solid white;
   }
   .thirdcolfirstrow{
-  height: 120px;
-  background-color: green;
-  }
-  .col-sm-12 .col-sm-8 .col-sm-4 {
+  height: 180px;
+  border: 2px solid white;
   }

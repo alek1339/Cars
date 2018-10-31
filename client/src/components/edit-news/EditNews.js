@@ -37,7 +37,7 @@ class EditNews extends Component {
                 </div>
                 <article>{news.text}</article>
                 {news.author}
-                <button onClick={() => this.onEditClick(news._id)}>Edit</button>
+                <button className='btn btn-primary' onClick={() => this.onEditClick(news._id)}>Edit</button>
               </li>
             )}
             </ul>

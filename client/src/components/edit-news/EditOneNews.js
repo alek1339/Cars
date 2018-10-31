@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { editNews } from '../../actions/editNewsActions'
 
 class EditOneNews extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       news: [],
@@ -16,11 +16,11 @@ class EditOneNews extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  onChange (e) {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
 
     const newsData = {
@@ -32,7 +32,7 @@ class EditOneNews extends Component {
     this.props.editNews(newsData)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('/api/news/edit')
       .then(res => res.json())
       .then(news => this.setState({
@@ -42,10 +42,10 @@ class EditOneNews extends Component {
         imgUrl: news.imgUrl,
         text: news.text
       },
-      console.log('News fetched', news)))
+        console.log('News fetched', news)))
   }
 
-  render () {
+  render() {
     return (
       <div className='container'>
         <form onSubmit={this.onSubmit}>
@@ -68,7 +68,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     editNews: (newsData) => dispatch(editNews(newsData))
   }

@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
 
 class Navbar extends Component {
-  onLogoutClick(e) {
+  onLogoutClick (e) {
     e.preventDefault()
     this.props.logoutUser()
   }
 
-  render() {
+  render () {
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
@@ -33,13 +33,19 @@ class Navbar extends Component {
           </div>
         </li>
         <li className='nav-item'>
+          <Link className='nav-link' to='/news'>
+            {' '}
+            Новини
+          </Link>
+        </li>
+        <li className='nav-item'>
           <a
             href=''
             onClick={this.onLogoutClick.bind(this)}
             className='nav-link'
           >
-            Hello {user.name}
-            {'! '}
+            {/* Hello {user.name} */}
+            {' '}
             Logout
           </a>
         </li>
@@ -49,9 +55,15 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className='navbar-nav ml-auto'>
         <li className='nav-item'>
+          <Link className='nav-link' to='/news'>
+            {' '}
+            Новини
+          </Link>
+        </li>
+        <li className='nav-item'>
           <Link className='nav-link' to='/register'>
-            Hello Guest!
-              Sign Up
+            {/* Hello Guest! */}
+            Sign Up
           </Link>
         </li>
         <li className='nav-item'>
@@ -63,10 +75,10 @@ class Navbar extends Component {
     )
 
     return (
-      <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-4'>
+      <nav className='navbar navbar-expand-sm navbar-dark nav mb-4'>
         <div className='container'>
-          <Link className='navbar-brand' to='/'>
-            Logo
+          <Link className='navbar-brand' to='/news'>
+            Carnews
           </Link>
           <button
             className='navbar-toggler'
@@ -79,12 +91,12 @@ class Navbar extends Component {
 
           <div className='collapse navbar-collapse' id='mobile-nav'>
             <ul className='navbar-nav mr-auto'>
-              <li className='nav-item'>
+              {/* <li className='nav-item'>
                 <Link className='nav-link' to='/news'>
                   {' '}
-                  News
+                  Новини
                 </Link>
-              </li>
+              </li> */}
             </ul>
             {isAuthenticated ? authLinks : guestLinks}
           </div>

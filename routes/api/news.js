@@ -35,7 +35,6 @@ router.post('/add-news', (req, res) => {
 // @desc    Get news
 // @access  Public
 router.get('/', (req, res) => {
-  console.log('HERE ' + req + res)
   News.find()
     .sort({ date: -1 })
     .then(posts => res.json(posts))
@@ -59,11 +58,20 @@ router.post('/edit-news', (req, res) => {
 
   News.findByIdAndUpdate(id, { $set: req.body }, function (err, result) {
     if (err) {
-      console.log(err)
+      console.log('Грешка:' + err)
     }
     console.log('RESULT: ' + result)
     res.send('Done')
   })
+})
+
+router.get('/id', (req, res) => {
+  const id = req.headers.referer.slice(30)
+
+  News.findById(id)
+    .sort({ date: -1 })
+    .then(news => res.json(news))
+    .catch(err => res.status(404).json({ nonewsfound: 'No news found' }))
 })
 
 module.exports = router
