@@ -1,20 +1,27 @@
 import { FETCH_CARS } from '../actions/types'
 
-const initialState =
-  [{
-    make: '',
-    model: '',
-    year: '',
-    engine: '',
-    hp: '',
-    mpg: '',
-    realMpg: '',
-    carClassification: '',
-    averagRepairCosts: '',
-    averageYearRepairs: ''
-  }]
+const initial = []
 
-export default function (state = initialState, action) {
+const initialState =
+{
+  make: '',
+  model: '',
+  year: '',
+  engine: '',
+  hp: '',
+  mpg: '',
+  realMpg: '',
+  carClassification: '',
+  averagRepairCosts: '',
+  averageYearRepairs: ''
+}
+
+initial.push(initialState)
+initial.push(initialState)
+initial.push(initialState)
+initial.push(initialState)
+
+export default function (state = initial, action) {
   switch (action.type) {
     case FETCH_CARS:
       return action.payload

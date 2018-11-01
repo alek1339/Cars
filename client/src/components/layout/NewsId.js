@@ -4,7 +4,7 @@ import axios from 'axios'
 import LastNews from './LastNews'
 
 class NewsId extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       news: [],
@@ -18,7 +18,7 @@ class NewsId extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     axios.get('/api/news/id')
       .then(news => this.setState({
         news,
@@ -28,10 +28,10 @@ class NewsId extends Component {
         text: news.data.text,
         date: news.data.date
       },
-        console.log('News fetched', news)))
+      console.log('News fetched', news)))
   }
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps (props) {
     const id = props.location.pathname.slice(9)
     let currentNews = this.props.news.filter(n => n._id === id)
 
@@ -46,11 +46,11 @@ class NewsId extends Component {
     }
   }
 
-  onChange(e) {
+  onChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  render() {
+  render () {
     let dateToStr = this.state.date
     let hourToStr = this.state.date
     hourToStr = this.state.date.slice(11, 19)

@@ -13,14 +13,24 @@ class News extends Component {
     this.state = {
       currentPage: 1
     }
+    this.getLastInex = this.getLastInex.bind(this)
   }
 
+  // Return index of las index of text when the text is cutted under 300 chars
+  getLastInex(text) {
+    let firstText = text.slice(0, 300)
+    let lastIndex = firstText.lastIndexOf('.')
+    return lastIndex + 1
+  }
+
+  // Handle for pagination
   handlePageChange = page => {
     this.setState({
       currentPage: page
     });
   };
 
+  // Dispatch action to fetch news
   componentDidMount() {
     this.props.fetchNews()
   }
@@ -38,8 +48,6 @@ class News extends Component {
     const limit = 4;
     const pageCount = 3;
     const total = newsArray.length * limit;
-
-    console.log(newsArray[0])
 
     const firstBoxIdLink = '/news/id/' + news[0]._id
     const secondBoxIdLink = '/news/id/' + news[1]._id
@@ -104,7 +112,7 @@ class News extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col-sm-8'>
+          <div className='col-sm-8 news'>
             <div>
               {newsArray[currentPage - 1].map(news => <div key={news.id}>
                 <Link className='header' to={'/news/id/' + news._id}><h1 className='text-dark'>{news.header}</h1></Link>
@@ -114,8 +122,8 @@ class News extends Component {
                     widt='100%'
                     height='250'
                     alt='img' />
-                </Link>
-                <article>{news.text.substr(0, 199)}</article>
+                </Link>{}
+                <article>{news.text.slice(0, this.getLastInex(news.text))}</article>
                 <Link className='readMore' to={'/news/id/' + news._id}>
                   <button className='btn btn-primary'>Почети още</button>
                 </Link>

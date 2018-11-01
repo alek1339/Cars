@@ -33,6 +33,7 @@ a:hover, .btn:hover {
 .jumbo{
   border-bottom: 2px solid #659EBC;
   padding-bottom: 3px;
+  margin-bottom: 3px;
 }
 
 .btn-primary {
@@ -50,7 +51,7 @@ code {
     monospace;
 }
 
-.container {
+.news {
   position: relative;
   text-align: center;
 }
