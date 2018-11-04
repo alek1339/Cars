@@ -4,7 +4,7 @@ import { editCars } from '../../actions/editCarsActions'
 import { deleteCar } from '../../actions/editCarsActions'
 
 class EditOneCar extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       cars: [],
@@ -17,23 +17,24 @@ class EditOneCar extends Component {
       carClassification: '',
       engine: '',
       averageRepairCosts: '',
-      averageYearRepairs: ''
+      averageYearRepairs: '',
+      imgUrl: ''
     }
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
     this.deleteCar = this.deleteCar.bind(this)
   }
 
-  deleteCar (e) {
+  deleteCar(e) {
     e.preventDefault()
     deleteCar()
   }
 
-  onChange (e) {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     console.log('edit car')
     e.preventDefault()
 
@@ -47,12 +48,13 @@ class EditOneCar extends Component {
       carClassification: this.state.carClassification,
       engine: this.state.engine,
       averageRepairCosts: this.state.averageRepairCosts,
-      averageYearRepairs: this.state.averageYearRepairs
+      averageYearRepairs: this.state.averageYearRepairs,
+      imgUrl: this.state.imgUrl
     }
     this.props.editCars(carData)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('/api/cars/edit')
       .then(res => res.json())
       .then(cars => this.setState({
@@ -66,12 +68,13 @@ class EditOneCar extends Component {
         carClassification: cars.carClassification,
         engine: cars.engine,
         averageRepairCosts: cars.averageRepairCosts,
-        averageYearRepairs: cars.averageYearRepairs
+        averageYearRepairs: cars.averageYearRepairs,
+        imgUrl: cars.imgUrl
       },
-      console.log('Cars fetched', cars)))
+        console.log('Cars fetched', cars)))
   }
 
-  render () {
+  render() {
     return (
       <div className='container'>
         <form onSubmit={this.onSubmit}>
@@ -88,6 +91,7 @@ class EditOneCar extends Component {
             <input type='text' name='year' onChange={this.onChange} placeholder='year' value={this.state.year} />
             <input type='text' name='averageRepairCosts' onChange={this.onChange} placeholder='averageRepairCosts' value={this.state.averageRepairCosts} />
             <input type='text' name='averageYearRepairs' onChange={this.onChange} placeholder='averageYearRepairs' value={this.state.averageYearRepairs} />
+            <input type='text' name='imgUrl' onChange={this.onChange} placeholder='imgUrl' value={this.state.imgUrl} />
             <input type='submit' value='Edit' className='btn btn-primary' />
             <button onClick={this.deleteCar}>Delete Car</button>
           </div>
@@ -102,7 +106,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     editCars: (carData) => dispatch(editCars(carData)),
     deleteCar: () => dispatch(deleteCar())

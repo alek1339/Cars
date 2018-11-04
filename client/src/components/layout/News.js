@@ -14,6 +14,7 @@ class News extends Component {
       currentPage: 1
     }
     this.getLastInex = this.getLastInex.bind(this)
+    this.newsClicked = this.newsClicked.bind(this)
   }
 
   // Return index of las index of text when the text is cutted under 300 chars
@@ -21,6 +22,10 @@ class News extends Component {
     let firstText = text.slice(0, 300)
     let lastIndex = firstText.lastIndexOf('.')
     return lastIndex + 1
+  }
+
+  newsClicked(id) {
+    this.props.history.push('/news/id/' + id)
   }
 
   // Handle for pagination
@@ -90,20 +95,20 @@ class News extends Component {
         <div className='row jumbo'>
           <div className='col-sm-12 '>
             <div className='row'>
-              <div className='col-sm-4 img pointer' style={firstBox}>
+              <div className='col-sm-4 img pointer' style={firstBox} onClick={() => this.newsClicked(news[0]._id)}>
                 <Link class='dropdown-item landing-box' to={firstBoxIdLink}>{news[0].header.slice(0, 30)}</Link>
               </div>
               <div className='col-sm-8'>
                 <div className='row'>
-                  <div className='col-sm-12 seccolfirstrow pointer' style={secondBox}>
+                  <div className='col-sm-12 seccolfirstrow pointer' style={secondBox} onClick={() => this.newsClicked(news[1]._id)}>
                     <Link class='dropdown-item landing-box' to={secondBoxIdLink}>{news[1].header}</Link>
                   </div>
                 </div>
                 <div className='row'>
-                  <div className='col-sm-6 seccolsecrow pointer' style={thirdBox}>
+                  <div className='col-sm-6 seccolsecrow pointer' style={thirdBox} onClick={() => this.newsClicked(news[2]._id)}>
                     <Link class='dropdown-item landing-box' to={thirdBoxIdLink}>{news[2].header.slice(0, 25)}</Link>
                   </div>
-                  <div className='col-sm-6 thirdcolfirstrow pointer' style={fourthBox}>
+                  <div className='col-sm-6 thirdcolfirstrow pointer' style={fourthBox} onClick={() => this.newsClicked(news[3]._id)}>
                     <Link class='dropdown-item landing-box' to={fourthBoxIdLink}>{news[3].header.slice(0, 25)}</Link>
                   </div>
                 </div>
@@ -119,8 +124,7 @@ class News extends Component {
                 <Link to={'/news/id/' + news._id}>
                   <img
                     src={news.imgUrl}
-                    widt='100%'
-                    height='250'
+                    width='100%'
                     alt='img' />
                 </Link>{}
                 <article>{news.text.slice(0, this.getLastInex(news.text))}</article>

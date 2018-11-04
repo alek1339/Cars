@@ -13,7 +13,8 @@ const initialState =
   realMpg: '',
   carClassification: '',
   averagRepairCosts: '',
-  averageYearRepairs: ''
+  averageYearRepairs: '',
+  imgUrl: ''
 }
 
 initial.push(initialState)

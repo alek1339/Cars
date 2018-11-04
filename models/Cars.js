@@ -46,6 +46,9 @@ const CarsSchema = new Schema({
   averageYearRepairs: {
     type: String,
     required: true
+  },
+  imgUrl: {
+    type: String
   }
 })
 

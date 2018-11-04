@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
 
 class Navbar extends Component {
-  onLogoutClick(e) {
+  onLogoutClick (e) {
     e.preventDefault()
     this.props.logoutUser()
   }
 
-  render() {
+  render () {
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
@@ -39,16 +39,22 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className='nav-item'>
-          <a
-            href=''
-            onClick={this.onLogoutClick.bind(this)}
-            className='nav-link'
-          >
-            {/* Hello {user.name} */}
+          <Link className='nav-link' to='/cars'>
             {' '}
-            Logout
-          </a>
+            Автомобили
+          </Link>
         </li>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/reliability'>
+            {' '}
+            Надеждност
+          </Link>
+        </li>
+        <li>
+          <Link className='nav-link' to='/reliability'>
+            {' '}
+            Ревюта
+          </Link></li>
       </ul>
     )
 
@@ -61,14 +67,21 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className='nav-item'>
-          <Link className='nav-link' to='/register'>
-            {/* Hello Guest! */}
-            Sign Up
+          <Link className='nav-link' to='/cars'>
+            {' '}
+            Автомобили
           </Link>
         </li>
         <li className='nav-item'>
-          <Link className='nav-link' to='/login'>
-            Login
+          <Link className='nav-link' to='/reliability'>
+            {' '}
+            Надеждност
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/reliability'>
+            {' '}
+            Ревюта
           </Link>
         </li>
       </ul>
@@ -77,8 +90,8 @@ class Navbar extends Component {
     return (
       <nav className='navbar navbar-expand-sm navbar-dark nav mb-4'>
         <div className='container'>
-          <Link className='navbar-brand' to='/news'>
-            Carnews
+          <Link className='navbar-brand' to='/news' id='logo'>
+            CARNEWS
           </Link>
           <button
             className='navbar-toggler'

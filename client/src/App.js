@@ -17,6 +17,7 @@ import News from './components/layout/News'
 import Dashboard from './components/layout/Dashboard'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import Cars from './components/layout/Cars'
 
 import EditNews from './components/edit-news/EditNews'
 import EditOneNews from './components/edit-news/EditOneNews'
@@ -67,6 +68,7 @@ class App extends Component {
               <Route path='/edit-one-car' component={EditOneCar} />
               <Route path='/edit-one-news' component={EditOneNews} />
               <Route exact path='/register' component={Register} />
+              <Route exact path='/cars' component={Cars} />
             </Switch>
 
             <Footer />

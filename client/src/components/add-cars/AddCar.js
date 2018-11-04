@@ -16,6 +16,7 @@ class AddCar extends Component {
       carClassification: '',
       averageRepairCosts: '',
       averageYearRepairs: '',
+      imgUrl: '',
       errors: {}
     }
     this.onSubmit = this.onSubmit.bind(this)
@@ -44,6 +45,7 @@ class AddCar extends Component {
       carClassification: this.state.carClassification,
       averageRepairCosts: this.state.averageRepairCosts,
       averageYearRepairs: this.state.averageYearRepairs,
+      imgUrl: this.state.imgUrl,
       errors: {}
     }
     this.props.addCar(newCar)
@@ -79,6 +81,8 @@ class AddCar extends Component {
             <span>{errors.averageRepairCosts}</span>
             <input type='text' name='averageYearRepairs' placeholder='averageYearRepairs' onChange={this.onChange} />
             <span>{errors.averageYearRepairs}</span>
+            <input type='text' name='imgUrl' placeholder='imgUrl' onChange={this.onChange} />
+            <span>{errors.imgUrl}</span>
             <input type='submit' className='btn btn-primary' />
           </div>
         </form>

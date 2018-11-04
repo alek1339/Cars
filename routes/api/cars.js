@@ -31,7 +31,8 @@ router.post('/add-car', (req, res) => {
     carClassification: req.body.carClassification,
     engine: req.body.engine,
     averageRepairCosts: req.body.averageRepairCosts,
-    averageYearRepairs: req.body.averageYearRepairs
+    averageYearRepairs: req.body.averageYearRepairs,
+    imgUrl: req.body.imgUrl
   })
   console.log(req.body)
   newCar
