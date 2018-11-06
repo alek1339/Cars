@@ -152,7 +152,7 @@ class News extends Component {
                 getPageItemProps
               }) => (
                   <div class='row'>
-                    <div className='col-sm-8 pagination'>
+                    <div className='pagination'>
                       <nav aria-label="Page navigation example">
                         <ul className="pagination">
                           <li className="page-item">
