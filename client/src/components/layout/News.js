@@ -14,13 +14,20 @@ class News extends Component {
       currentPage: 1
     }
     this.getLastInex = this.getLastInex.bind(this)
+    this.getLastInexTitle = this.getLastInexTitle.bind(this)
     this.newsClicked = this.newsClicked.bind(this)
   }
 
   // Return index of las index of text when the text is cutted under 300 chars
-  getLastInex(text) {
-    let firstText = text.slice(0, 300)
+  getLastInex(text, ind) {
+    let firstText = text.slice(0, ind)
     let lastIndex = firstText.lastIndexOf('.')
+    return lastIndex + 1
+  }
+
+  getLastInexTitle(title, ind) {
+    let firstText = title.slice(0, ind)
+    let lastIndex = firstText.lastIndexOf(' ')
     return lastIndex + 1
   }
 
@@ -96,20 +103,20 @@ class News extends Component {
           <div className='col-sm-12 '>
             <div className='row'>
               <div className='col-sm-4 img pointer' style={firstBox} onClick={() => this.newsClicked(news[0]._id)}>
-                <Link class='dropdown-item landing-box' to={firstBoxIdLink}>{news[0].header.slice(0, 30)}</Link>
+                <Link class='dropdown-item landing-box' to={firstBoxIdLink}>{news[0].header.slice(0, this.getLastInexTitle(news[0].header, 30))}</Link>
               </div>
               <div className='col-sm-8'>
                 <div className='row'>
                   <div className='col-sm-12 seccolfirstrow pointer' style={secondBox} onClick={() => this.newsClicked(news[1]._id)}>
-                    <Link class='dropdown-item landing-box' to={secondBoxIdLink}>{news[1].header.slice(0, 10)}</Link>
+                    <Link class='dropdown-item landing-box' to={secondBoxIdLink}>{news[1].header.slice(0, this.getLastInexTitle(news[1].header, 30))}</Link>
                   </div>
                 </div>
                 <div className='row'>
                   <div className='col-sm-6 seccolsecrow pointer' style={thirdBox} onClick={() => this.newsClicked(news[2]._id)}>
-                    <Link class='dropdown-item landing-box' to={thirdBoxIdLink}>{news[2].header.slice(0, 10)}</Link>
+                    <Link class='dropdown-item landing-box' to={thirdBoxIdLink}>{news[2].header.slice(0, this.getLastInexTitle(news[2].header, 30))}</Link>
                   </div>
                   <div className='col-sm-6 thirdcolfirstrow pointer' style={fourthBox} onClick={() => this.newsClicked(news[3]._id)}>
-                    <Link class='dropdown-item landing-box' to={fourthBoxIdLink}>{news[3].header.slice(0, 10)}</Link>
+                    <Link class='dropdown-item landing-box' to={fourthBoxIdLink}>{news[3].header.slice(0, this.getLastInexTitle(news[3].header, 30))}</Link>
                   </div>
                 </div>
               </div>
@@ -127,7 +134,7 @@ class News extends Component {
                     width='100%'
                     alt='img' />
                 </Link>{}
-                <article>{news.text.slice(0, this.getLastInex(news.text))}</article>
+                <article>{news.text.slice(0, this.getLastInex(news.text, 300))}</article>
                 <Link className='readMore' to={'/news/id/' + news._id}>
                   <button className='btn btn-primary'>Почети още</button>
                 </Link>
