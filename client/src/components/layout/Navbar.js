@@ -10,30 +10,39 @@ class Navbar extends Component {
   }
 
   render () {
-    const { isAuthenticated, user } = this.props.auth
+    const { isAuthenticated } = this.props.auth
 
     const authLinks = (
       <ul className='navbar-nav ml-auto'>
         <li class='nav-item dropdown'>
           <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-            News
+            Новини
           </a>
           <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-            <Link class='dropdown-item' to='/add-news'>Add news</Link>
-            <Link class='dropdown-item' to='/edit-news'>Edit News</Link>
+            <Link class='dropdown-item' to='/add-news'>Добави</Link>
+            <Link class='dropdown-item' to='/edit-news'>Промени</Link>
           </div>
         </li>
         <li class='nav-item dropdown'>
           <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-            Cars
+            Автомобили
           </a>
           <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-            <Link class='dropdown-item' to='/add-car'>Add Car</Link>
-            <Link class='dropdown-item' to='/edit-cars'>Edit Car</Link>
+            <Link class='dropdown-item' to='/add-car'>Добави</Link>
+            <Link class='dropdown-item' to='/edit-cars'>Промени</Link>
+          </div>
+        </li>
+        <li class='nav-item dropdown'>
+          <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            Ревюта
+          </a>
+          <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+            <Link class='dropdown-item' to='/add-news'>Добави Ревю</Link>
+            <Link class='dropdown-item' to='/edit-news'>Промени Ревю</Link>
           </div>
         </li>
         <li className='nav-item'>
-          <Link className='nav-link' to='/news'>
+          <Link className='nav-link' to='/'>
             {' '}
             Новини
           </Link>
@@ -51,7 +60,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li>
-          <Link className='nav-link' to='/reliability'>
+          <Link className='nav-link' to='/reviews'>
             {' '}
             Ревюта
           </Link></li>
@@ -61,7 +70,7 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className='navbar-nav ml-auto'>
         <li className='nav-item'>
-          <Link className='nav-link' to='/news'>
+          <Link className='nav-link' to='/'>
             {' '}
             Новини
           </Link>
@@ -79,7 +88,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className='nav-item'>
-          <Link className='nav-link' to='/reliability'>
+          <Link className='nav-link' to='/reviews'>
             {' '}
             Ревюта
           </Link>
@@ -90,7 +99,7 @@ class Navbar extends Component {
     return (
       <nav className='navbar navbar-expand-sm navbar-dark nav mb-4'>
         <div className='container'>
-          <Link className='navbar-brand' to='/news' id='logo'>
+          <Link className='navbar-brand' to='/' id='logo'>
             CARNEWS
           </Link>
           <button
@@ -111,7 +120,7 @@ class Navbar extends Component {
                 </Link>
               </li> */}
             </ul>
-            {isAuthenticated ? authLinks : guestLinks}
+            {this.props.auth.user.id === '5bdec2221a96476648975936' ? authLinks : guestLinks}
           </div>
         </div>
       </nav>

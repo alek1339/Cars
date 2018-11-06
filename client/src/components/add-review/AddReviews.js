@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addNews } from '../../actions/addNewsActions'
+import { addReview } from '../../actions/addReviewsActions'
 
-class AddNews extends Component {
+class AddReview extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,13 +28,13 @@ class AddNews extends Component {
 
   onSubmit(e) {
     e.preventDefault()
-    const newsData = {
+    const reviewData = {
       header: this.state.header,
       text: this.state.text,
       author: this.state.author,
       imgUrl: this.state.imgUrl
     }
-    this.props.addNews(newsData)
+    this.props.addReview(reviewData)
   }
 
   onChange(e) {
@@ -76,8 +76,8 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNews: (newsData) => dispatch(addNews(newsData))
+    addReview: (reviewData) => dispatch(addReview(reviewData))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNews)
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview)

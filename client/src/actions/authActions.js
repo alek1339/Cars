@@ -32,7 +32,7 @@ export const loginUser = (userData) => dispatch => {
       })
     )
 
-    // Just for TEST
+  // Just for TEST
 }
 
 export const setCurrentUser = decoded => {

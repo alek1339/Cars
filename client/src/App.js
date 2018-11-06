@@ -29,6 +29,13 @@ import AddCar from './components/add-cars/AddCar'
 import EditCars from './components/edit-car/EditCars'
 import EditOneCar from './components/edit-car/EditOneCar'
 
+import AddReviews from './components/add-review/AddReviews'
+import Reviews from './components/layout/Reviews'
+import EditReviews from './components/edit-reviews/EditReviews'
+import EditOneReviews from './components/edit-reviews/EditOneReviews'
+import ReviewsId from './components/layout/ReviewsId'
+import Reliability from './components/layout/Reliability'
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -59,14 +66,20 @@ class App extends Component {
             <Switch>
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
-              <Route exact path='/news' component={News} />
-              <Route exact path='/add-car' component={AddCar} />
-              <Route exact path='/add-news' component={AddNews} />
-              <Route exact path='/edit-news' component={EditNews} />
-              <Route exact path='/edit-cars' component={EditCars} />
+              <Route exact path='/' component={News} />
+              <Route exact path='/reviews' component={Reviews} />
+              <Route exact path='/reliability' component={Reliability} />
+              <PrivateRoute exact path='/add-car' component={AddCar} />
+              <PrivateRoute exact path='/add-news' component={AddNews} />
+              <PrivateRoute exact path='/add-reviews' component={AddReviews} />
+              <PrivateRoute exact path='/edit-news' component={EditNews} />
+              <PrivateRoute exact path='/edit-reviews' component={EditReviews} />
+              <PrivateRoute path='/edit-one-reviews' component={EditOneReviews} />
+              <PrivateRoute exact path='/edit-cars' component={EditCars} />
+              <Route path='/reviews/id/' component={ReviewsId} />
               <Route path='/news/id/' component={NewsId} />
-              <Route path='/edit-one-car' component={EditOneCar} />
-              <Route path='/edit-one-news' component={EditOneNews} />
+              <PrivateRoute path='/edit-one-car' component={EditOneCar} />
+              <PrivateRoute path='/edit-one-news' component={EditOneNews} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/cars' component={Cars} />
             </Switch>

@@ -7,9 +7,9 @@ const validateNewsInput = require('../../validation/news')
 // Load User model
 const News = require('../../models/News')
 
-// @route  GET api/posts/register
-// @desc Register user
-// @access Public
+// @route  GET api/news/add-news
+// @desc Add news
+// @access Private
 router.post('/add-news', (req, res) => {
   //  Check Validation
   const { errors, isValid } = validateNewsInput(req.body)

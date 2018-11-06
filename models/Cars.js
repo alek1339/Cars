@@ -43,7 +43,7 @@ const CarsSchema = new Schema({
     type: String,
     required: true
   },
-  averageYearRepairs: {
+  reliability: {
     type: String,
     required: true
   },

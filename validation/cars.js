@@ -1,7 +1,7 @@
 const isEmpty = require('./is-empty')
 const Validator = require('validator')
 
-module.exports = function validateAddCarInput (data) {
+module.exports = function validateAddCarInput(data) {
   let errors = {}
 
   data.make = !isEmpty(data.make) ? data.make : ''
@@ -13,7 +13,7 @@ module.exports = function validateAddCarInput (data) {
   data.engine = !isEmpty(data.engine) ? data.engine : ''
   data.carClass = !isEmpty(data.text) ? data.carClass : ''
   data.averageRepairCosts = !isEmpty(data.averageRepairCosts) ? data.averageRepairCosts : ''
-  data.averageYearRepairs = !isEmpty(data.averageYearRepairs) ? data.averageYearRepairs : ''
+  data.reliability = !isEmpty(data.reliability) ? data.reliability : ''
   data.imgUrl = !isEmpty(data.imgUrl) ? data.imgUrl : ''
 
   if (!Validator.isLength(data.imgUrl, { min: 5, max: 300 })) {
@@ -74,11 +74,11 @@ module.exports = function validateAddCarInput (data) {
   if (Validator.isEmpty(data.averageRepairCosts)) {
     errors.averageRepairCosts = 'Average repair costs field is required'
   }
-  if (!Validator.isLength(data.averageYearRepairs, { min: 1, max: 30 })) {
-    errors.averageYearRepairs = 'Average year repairs must be between 1 and 30 characters'
+  if (!Validator.isLength(data.reliability, { min: 1, max: 30 })) {
+    errors.reliability = 'Average year repairs must be between 1 and 30 characters'
   }
-  if (Validator.isEmpty(data.averageYearRepairs)) {
-    errors.averageYearRepairs = 'Average year repairs field is required'
+  if (Validator.isEmpty(data.reliability)) {
+    errors.reliability = 'Average year repairs field is required'
   }
 
   return {

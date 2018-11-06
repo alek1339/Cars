@@ -15,6 +15,7 @@ router.get('/', (req, res) => res.json({ msg: 'Cars Works' }))
 // @access Public
 router.post('/add-car', (req, res) => {
   // Check Validation
+  console.log(req.body)
   const { errors, isValid } = validateAddCarInput(req.body)
 
   if (!isValid) {
@@ -31,10 +32,10 @@ router.post('/add-car', (req, res) => {
     carClassification: req.body.carClassification,
     engine: req.body.engine,
     averageRepairCosts: req.body.averageRepairCosts,
-    averageYearRepairs: req.body.averageYearRepairs,
+    reliability: req.body.reliability,
     imgUrl: req.body.imgUrl
   })
-  console.log(req.body)
+
   newCar
     .save()
     .then(post => res.json(post))

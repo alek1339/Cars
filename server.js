@@ -7,6 +7,7 @@ const users = require('./routes/api/users')
 const profile = require('./routes/api/profile')
 const news = require('./routes/api/news')
 const cars = require('./routes/api/cars')
+const reviews = require('./routes/api/reviews')
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.use('/api/cars', cars)
 app.use('/api/news', news)
 app.use('/api/users', users)
 app.use('/api/profile', profile)
+app.use('/api/reviews', reviews)
 
 const port = process.env.PORT || 5000
 

@@ -13,7 +13,7 @@ const initialState =
   realMpg: '',
   carClassification: '',
   averagRepairCosts: '',
-  averageYearRepairs: '',
+  reliability: '',
   imgUrl: ''
 }
 

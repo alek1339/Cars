@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addCar } from '../../actions/addCarActions'
 
 class AddCar extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       make: '',
@@ -15,7 +15,7 @@ class AddCar extends Component {
       realMpg: '',
       carClassification: '',
       averageRepairCosts: '',
-      averageYearRepairs: '',
+      reliability: '',
       imgUrl: '',
       errors: {}
     }
@@ -23,7 +23,7 @@ class AddCar extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     // if (nextProps.auth.isAuthenticated) {
     //   this.props.history.push('/dashboard')
     // }
@@ -32,7 +32,7 @@ class AddCar extends Component {
     }
   }
 
-  onSubmit(e) {
+  onSubmit (e) {
     e.preventDefault()
     const newCar = {
       make: this.state.make,
@@ -44,18 +44,18 @@ class AddCar extends Component {
       realMpg: this.state.realMpg,
       carClassification: this.state.carClassification,
       averageRepairCosts: this.state.averageRepairCosts,
-      averageYearRepairs: this.state.averageYearRepairs,
+      reliability: this.state.reliability,
       imgUrl: this.state.imgUrl,
       errors: {}
     }
     this.props.addCar(newCar)
   }
 
-  onChange(e) {
+  onChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  render() {
+  render () {
     const { errors } = this.state
     return (
       <div>
@@ -79,8 +79,8 @@ class AddCar extends Component {
             <span>{errors.carClassification}</span>
             <input type='text' name='averageRepairCosts' placeholder='averageRepairCosts' onChange={this.onChange} />
             <span>{errors.averageRepairCosts}</span>
-            <input type='text' name='averageYearRepairs' placeholder='averageYearRepairs' onChange={this.onChange} />
-            <span>{errors.averageYearRepairs}</span>
+            <input type='text' name='reliability' placeholder='reliability' onChange={this.onChange} />
+            <span>{errors.reliability}</span>
             <input type='text' name='imgUrl' placeholder='imgUrl' onChange={this.onChange} />
             <span>{errors.imgUrl}</span>
             <input type='submit' className='btn btn-primary' />
@@ -95,7 +95,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     addCar: (carData) => dispatch(addCar(carData))
   }

@@ -5,7 +5,7 @@ import LastNews from './LastNews'
 import { fetchCars } from '../../actions/carActions'
 
 class Cars extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       models: [],
@@ -17,11 +17,11 @@ class Cars extends Component {
   }
 
   // Dispatch action to fetch cars
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchCars()
   }
 
-  onChange (e) {
+  onChange(e) {
     let filteredCars = this.props.cars.filter(m => m.make === e.target.value)
     let models = []
 
@@ -34,15 +34,25 @@ class Cars extends Component {
     })
   }
 
-  modelChanged (e) {
+  modelChanged(e) {
     let car = this.props.cars.filter(m => m.model === e.target.value)
+    let carClass = this.props.cars.filter(m => m.carClassification === car.carClassification)
+
+    for (let i = 0; i < carClass.length; i++) {
+      let mpg = this.state.averageClassMpg
+      mpg += carClass[i].mpg
+
+      this.setState({
+        averageClassMpg: mpg
+      })
+    }
 
     this.setState({
       car: car
     })
   }
 
-  render () {
+  render() {
     let cars = this.props.cars
 
     let makes = []
@@ -78,12 +88,13 @@ class Cars extends Component {
             <div className='mt-3'>{this.state.car.map(car =>
               <div key={car.id}>
                 <img src={car.imgUrl} width='240px' />
-                <div><p>
-                  <strong>{car.make} {car.model} {car.engine} {car.year}</strong>
-                </p></div>
+                <div>
+                  <p>
+                    <strong>{car.make} {car.model} {car.engine} {car.year}</strong>
+                  </p></div>
                 <div>
                   <p>Средната сума за подръжка и ремонт на
-                  {' ' + car.make} {car.model} е <strong>{car.averageRepairCosts}лв</strong>.</p>
+                  {' ' + car.make} {car.model} е <strong>{car.averageRepairCosts}лв</strong> на година.</p>
                   <p>Средният разход на 100км според данни на производителя е <strong>{car.mpg}</strong>
                     , но реалният среден разход според данни на собствениците е <strong>{car.realMpg}</strong>.
                   </p>
@@ -99,7 +110,7 @@ class Cars extends Component {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchCars: () => dispatch(fetchCars())
   }

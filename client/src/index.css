@@ -71,6 +71,15 @@ a:hover, .btn:hover {
   color: white;
 }
 
+.badge-primary{
+  margin-top: 45px;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  font-size: 23px;
+  background-color: #1cbd09;
+}
+
 #footer-text{
   margin-top: 10px;
   font-size: 0.8rem;
@@ -150,3 +159,8 @@ code {
   height: 180px;
   border: 2px solid white;
   }
+
+  b, strong {
+    color: rgb(77, 97, 94);
+    font-weight: bolder;
+}
