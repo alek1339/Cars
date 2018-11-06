@@ -103,7 +103,11 @@ class News extends Component {
           <div className='col-sm-12 '>
             <div className='row'>
               <div className='col-sm-4 img pointer' style={firstBox} onClick={() => this.newsClicked(news[0]._id)}>
-                <Link class='dropdown-item landing-box' to={firstBoxIdLink}>{news[0].header.slice(0, this.getLastInexTitle(news[0].header, 30))}</Link>
+                <Link class='dropdown-item landing-box' to={firstBoxIdLink}>
+                  {news[0].header.slice(0, this.getLastInexTitle(news[0].header, 30))}
+                </Link>
+
+
               </div>
               <div className='col-sm-8'>
                 <div className='row'>

@@ -32,6 +32,10 @@ a:hover, .btn:hover {
   opacity: .8;
 }
 
+.pointer:hover .hidden{
+  display: block;
+}
+
 .pagination{
   left: 25%;
 }

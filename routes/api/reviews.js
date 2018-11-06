@@ -64,7 +64,8 @@ router.post('/edit-reviews', (req, res) => {
 })
 
 router.get('/id', (req, res) => {
-  const id = req.headers.referer.slice(33)
+  let lastIndexOfId = req.headers.referer.lastIndexOf('/')
+  const id = req.headers.referer.slice(lastIndexOfId + 1)
 
   Reviews.findById(id)
     .sort({ date: -1 })
