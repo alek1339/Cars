@@ -44,7 +44,8 @@ router.get('/', (req, res) => {
 // @desc    Edit review
 // @access  Public
 router.get('/edit', (req, res) => {
-  const id = req.headers.referer.slice(42)
+  let lastIndexOfId = req.headers.referer.lastIndexOf('/')
+  const id = req.headers.referer.slice(lastIndexOfId + 1)
   Reviews.findById(id)
     .sort({ date: -1 })
     .then(posts => res.json(posts))
@@ -52,7 +53,8 @@ router.get('/edit', (req, res) => {
 })
 
 router.post('/edit-reviews', (req, res) => {
-  const id = req.headers.referer.slice(42)
+  let lastIndexOfId = req.headers.referer.lastIndexOf('/')
+  const id = req.headers.referer.slice(lastIndexOfId + 1)
 
   Reviews.findByIdAndUpdate(id, { $set: req.body }, function (err, result) {
     if (err) {
