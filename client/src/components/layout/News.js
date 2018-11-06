@@ -101,15 +101,15 @@ class News extends Component {
               <div className='col-sm-8'>
                 <div className='row'>
                   <div className='col-sm-12 seccolfirstrow pointer' style={secondBox} onClick={() => this.newsClicked(news[1]._id)}>
-                    <Link class='dropdown-item landing-box' to={secondBoxIdLink}>{news[1].header}</Link>
+                    <Link class='dropdown-item landing-box' to={secondBoxIdLink}>{news[1].header.slice(0, 10)}</Link>
                   </div>
                 </div>
                 <div className='row'>
                   <div className='col-sm-6 seccolsecrow pointer' style={thirdBox} onClick={() => this.newsClicked(news[2]._id)}>
-                    <Link class='dropdown-item landing-box' to={thirdBoxIdLink}>{news[2].header.slice(0, 25)}</Link>
+                    <Link class='dropdown-item landing-box' to={thirdBoxIdLink}>{news[2].header.slice(0, 10)}</Link>
                   </div>
                   <div className='col-sm-6 thirdcolfirstrow pointer' style={fourthBox} onClick={() => this.newsClicked(news[3]._id)}>
-                    <Link class='dropdown-item landing-box' to={fourthBoxIdLink}>{news[3].header.slice(0, 25)}</Link>
+                    <Link class='dropdown-item landing-box' to={fourthBoxIdLink}>{news[3].header.slice(0, 10)}</Link>
                   </div>
                 </div>
               </div>
