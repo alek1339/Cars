@@ -45,7 +45,8 @@ router.get('/', (req, res) => {
 // @desc    Get news
 // @access  Public
 router.get('/edit', (req, res) => {
-  const id = req.headers.referer.slice(39)
+  let lastIndexOfId = req.headers.referer.lastIndexOf(':')
+  const id = req.headers.referer.slice(lastIndexOfId + 1)
 
   News.findById(id)
     .sort({ date: -1 })
@@ -54,8 +55,9 @@ router.get('/edit', (req, res) => {
 })
 
 router.post('/edit-news', (req, res) => {
-  const id = req.headers.referer.slice(39)
-
+  let lastIndexOfId = req.headers.referer.lastIndexOf(':')
+  const id = req.headers.referer.slice(lastIndexOfId + 1)
+  console.log(id)
   News.findByIdAndUpdate(id, { $set: req.body }, function (err, result) {
     if (err) {
       console.log('Грешка:' + err)
@@ -66,7 +68,8 @@ router.post('/edit-news', (req, res) => {
 })
 
 router.get('/id', (req, res) => {
-  const id = req.headers.referer.slice(30)
+  let lastIndexOfId = req.headers.referer.lastIndexOf('/')
+  const id = req.headers.referer.slice(lastIndexOfId + 1)
 
   News.findById(id)
     .sort({ date: -1 })
