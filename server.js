@@ -9,6 +9,7 @@ const profile = require('./routes/api/profile')
 const news = require('./routes/api/news')
 const cars = require('./routes/api/cars')
 const reviews = require('./routes/api/reviews')
+const comments = require('./routes/api/comments')
 
 const app = express()
 
@@ -37,6 +38,7 @@ app.use('/api/news', news)
 app.use('/api/users', users)
 app.use('/api/profile', profile)
 app.use('/api/reviews', reviews)
+app.use('/api/comments', comments)
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {

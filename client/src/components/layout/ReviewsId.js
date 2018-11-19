@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import LastNews from './LastNews'
+import Comments from '../comments/Comments'
 
 class ReviewsId extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       reviews: [],
@@ -18,7 +19,7 @@ class ReviewsId extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios.get('/api/reviews/id')
       .then(reviews => this.setState({
         reviews,
@@ -28,10 +29,10 @@ class ReviewsId extends Component {
         text: reviews.data.text,
         date: reviews.data.date
       },
-      console.log('reviews fetched', reviews)))
+        console.log('reviews fetched', reviews)))
   }
 
-  componentWillReceiveProps (props) {
+  componentWillReceiveProps(props) {
     const id = props.location.pathname.slice(9)
     let currentReviews = this.props.reviews.filter(n => n._id === id)
 
@@ -46,11 +47,11 @@ class ReviewsId extends Component {
     }
   }
 
-  onChange (e) {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  render () {
+  render() {
     let dateToStr = this.state.date
     let hourToStr = this.state.date
     hourToStr = this.state.date.slice(11, 19)
@@ -65,6 +66,7 @@ class ReviewsId extends Component {
             <p>{this.state.text} </p>
             <p>Aвтор {this.state.author} </p>
             <p>{dateToStr} | {hourToStr}</p>
+            <Comments />
           </div>
           <LastNews />
         </div>
